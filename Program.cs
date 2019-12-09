@@ -86,16 +86,18 @@ public class program
         data.initialize(); //This gets our size of the scan Var.byteamount
         //Thread.Sleep(0);
 
-        do
-        {
-                while(Console.KeyAvailable == false)
-                {
-                command.watchdog();
-                data.bulkdatatcp();  
-                //Thread.Sleep(250); 
-                }
-        }
-        while(Console.ReadKey(true).Key != ConsoleKey.Enter);
+        // do
+        // {
+        //         while(Console.KeyAvailable == false)
+        //         {
+        //         command.watchdog();
+        //         data.bulkdatatcp();  
+        //         //Thread.Sleep(250); 
+        //         }
+        // }
+        // while(Console.ReadKey(true).Key != ConsoleKey.Enter);
+
+        data.background();
 
         command.stopstream();
         command.handlerelease();

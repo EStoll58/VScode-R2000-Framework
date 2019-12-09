@@ -47,4 +47,5 @@ public static class Var
     public static int numscanpoints;
     public static decimal[] angulardata;
     public static int[] measurmentdata;
+    public static int[] background;
 }

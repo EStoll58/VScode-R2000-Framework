@@ -322,7 +322,7 @@ public class Data
                     {
                          Var.measurmentdata[i] = ((rawmeasurmentdata[i * 4]) + (rawmeasurmentdata[(i*4)+1] << 8) + (rawmeasurmentdata[(i*4)+2] << 16) + (rawmeasurmentdata[(i*4)+3] << 24));
                     }
-                        Console.WriteLine("Measurement Data =\r\n " + string.Join(" ",Var.measurmentdata));
+                        //Console.WriteLine("Measurement Data =\r\n " + string.Join(" ",Var.measurmentdata));
                         //Measurement data stored in Var.measurementdata
 
 
@@ -340,6 +340,51 @@ public class Data
         }
     }   
     
+
+    public void background()
+    {
+        //Takes the average of 3 scans for the background 
+        bulkdatatcp();
+
+        int[] background1 = new int[Var.measurmentdata.Length];
+        int[] background2 = new int[Var.measurmentdata.Length];
+        int[] background3 = new int[Var.measurmentdata.Length];
+        Var.background = new int[Var.measurmentdata.Length];
+
+        bulkdatatcp();
+        Array.Copy(Var.measurmentdata,background1,Var.measurmentdata.Length);
+        bulkdatatcp();
+        Array.Copy(Var.measurmentdata,background2,Var.measurmentdata.Length);
+        bulkdatatcp();
+        Array.Copy(Var.measurmentdata,background3,Var.measurmentdata.Length);
+
+        Console.WriteLine("calculating");
+        // NEED TO ADD, IF -1 OR NULL IGNORE, ERROR IN SCAN VALUE
+        for (int i = 0; i < Var.measurmentdata.Length; i++)
+        {
+            Var.background[i] = ((background1[i] + background2[i] + background3[i]) / 3);
+        }
+
+        Console.WriteLine("Background = \r\n" + string.Join(" ", Var.background));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void packetcheck()
     {
         int offset = 0;

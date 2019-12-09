@@ -58,6 +58,7 @@ public class Configuration
         Var.FilterWidth = Convert.ToInt32(stringvariables[5]);
         Var.ScanDataType = stringvariables[6];
         Var.ScanStartAngle = (Convert.ToInt32(stringvariables[7]) * 10000);
+        Var.ScanFieldAngle = Convert.ToInt32(stringvariables[8]);
         Var.maxnumpointsscan = Math.Round((Var.SamplesPerScan/360) * Convert.ToInt32(stringvariables[8]));
         Var.HMIDisplayType = stringvariables[9];
         Var.HMIDisplayText1 = stringvariables[10];

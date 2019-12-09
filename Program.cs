@@ -92,7 +92,7 @@ public class program
                 {
                 command.watchdog();
                 data.bulkdatatcp();  
-                //Thread.Sleep(1000); 
+                //Thread.Sleep(250); 
                 }
         }
         while(Console.ReadKey(true).Key != ConsoleKey.Enter);

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\estoll\\Documents\\R2000\\Csharp\\R2000 Measurement\\program\\program.csproj": {}
+    "C:\\Users\\estoll\\Documents\\R2000\\Csharp\\R2000-Library\\program.csproj": {}
   },
   "projects": {
-    "C:\\Users\\estoll\\Documents\\R2000\\Csharp\\R2000 Measurement\\program\\program.csproj": {
+    "C:\\Users\\estoll\\Documents\\R2000\\Csharp\\R2000-Library\\program.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\estoll\\Documents\\R2000\\Csharp\\R2000 Measurement\\program\\program.csproj",
+        "projectUniqueName": "C:\\Users\\estoll\\Documents\\R2000\\Csharp\\R2000-Library\\program.csproj",
         "projectName": "program",
-        "projectPath": "C:\\Users\\estoll\\Documents\\R2000\\Csharp\\R2000 Measurement\\program\\program.csproj",
+        "projectPath": "C:\\Users\\estoll\\Documents\\R2000\\Csharp\\R2000-Library\\program.csproj",
         "packagesPath": "C:\\Users\\estoll\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\estoll\\Documents\\R2000\\Csharp\\R2000 Measurement\\program\\obj\\",
+        "outputPath": "C:\\Users\\estoll\\Documents\\R2000\\Csharp\\R2000-Library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\estoll\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
+
 public class Data
 { 
     bool allpackets = false;
@@ -10,6 +11,7 @@ public class Data
 
     public void tcprecieve(int size)
     {
+        Var.Socket.ReceiveTimeout = 3000;
         Var.Socket.ReceiveBufferSize = 150000; // At 25200 data points and 360 degree field of veiw, 106576 bytes are sent per scan.  
         Var.data = new byte[size];
         try 
@@ -45,6 +47,7 @@ public class Data
     public void initialize()
     {
 
+        Var.numscanpoints = 0;
         int magic; 
         int byteamount = 0;
         Var.packetamount = 1;
@@ -99,6 +102,9 @@ public class Data
                     byteamount = byteamount + packet_size;
                     //Console.WriteLine("byteamount = " + byteamount);
 
+                    Var.numscanpoints = numpoints_packet;
+                    //Console.WriteLine("Scan points = " + Var.numscanpoints);
+
                     Console.WriteLine(" \r\n ");
                 }
                     else
@@ -149,6 +155,9 @@ public class Data
                             byteamount = byteamount + packet_size;
                             //Console.WriteLine("byteamount = " + byteamount);
                             //Console.WriteLine(" \r\n ");
+                            
+                            Var.numscanpoints = Var.numscanpoints + numpoints_packet;
+                            //Console.WriteLine("Scan points = " + Var.numscanpoints);
 
                             Var.packetsize[i + 1] = packet_size;
                             Var.rawdata = new Byte[Var.data.Length];
@@ -169,6 +178,33 @@ public class Data
                     Console.WriteLine("there was only 1 packet");
                 }
                 Var.byteamount = byteamount;
+                //Console.WriteLine("Scan points = " + Var.numscanpoints);
+
+                //Initializing angular increment array
+                Var.angulardata = new decimal[Var.numscanpoints];
+
+                decimal degrees = Math.Round(decimal.Divide(Convert.ToInt32(Var.ScanFieldAngle), Convert.ToInt32(Var.numscanpoints)),3);
+                //Console.WriteLine("degrees = " + degrees);
+                //Console.WriteLine("scanfieldangle = " + Var.ScanFieldAngle);
+                //Console.WriteLine("numscanpoints = " + Var.numscanpoints);
+                if (Var.ScanDirection == "ccw")
+                {
+                    for (int i = 0; i < Var.numscanpoints; i++)
+                    {
+                        Var.angulardata[i] = ((Var.ScanStartAngle/10000) + (i * degrees));
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < Var.numscanpoints; i++)
+                    {
+                        Var.angulardata[i] = ((Var.ScanStartAngle/10000) - (i * degrees));
+                    }
+                }
+                Console.WriteLine("Angular Data =\r\n " + string.Join(" ",Var.angulardata));
+                
+
+
                 /******************************
                 Important variables from here are:
 
@@ -234,7 +270,7 @@ public class Data
                 magiccheck();
                 int location = 0;
                 int offset = 0;
-                Var.measurmentdata = new byte[Var.byteamount - (Var.packetamount * Var.headersize)];
+                byte[] rawmeasurmentdata = new byte[Var.byteamount - (Var.packetamount * Var.headersize)];
                 
                 if(magicok == true)
                 {
@@ -252,10 +288,23 @@ public class Data
                         }
                         //Console.WriteLine("\r\ni = " + i );
                         //Console.WriteLine("offset = " + offset);
-                        Buffer.BlockCopy(Var.rawdata, offset, Var.measurmentdata, location, Var.packetsize[i]-Var.headersize);
+                        Buffer.BlockCopy(Var.rawdata, offset, rawmeasurmentdata, location, Var.packetsize[i]-Var.headersize);
                         location = location + Var.packetsize[i]-Var.headersize; 
                     }
-                        //Console.WriteLine("Measurement Data =\r\n " + string.Join(" ",Var.measurmentdata));
+                        //Console.WriteLine("Raw Measurement Data =\r\n " + string.Join(" ",rawmeasurmentdata));
+                    
+                    // Now the data needs to be converted into usable data.
+                    Var.measurmentdata = new int[Var.numscanpoints];
+                    //Console.WriteLine("numscanpoints = " + Var.numscanpoints);
+
+                    for(int i = 0; i < (Var.numscanpoints); i++)
+                    {
+                         Var.measurmentdata[i] = ((rawmeasurmentdata[i * 4]) + (rawmeasurmentdata[(i*4)+1] << 8) + (rawmeasurmentdata[(i*4)+2] << 16) + (rawmeasurmentdata[(i*4)+3] << 24));
+                    }
+                        Console.WriteLine("Measurement Data =\r\n " + string.Join(" ",Var.measurmentdata));
+                        //Measurement data stored in Var.measurementdata
+
+
                 }
                 else
                 {
@@ -341,12 +390,12 @@ public void magicfinder()
     {
         try
         {
+            int a = 10000;
             var command = new Command();
             command.stopstream();
             bool good = false;
             while(good == false)
             {
-                int a = 10000;
                 int c = a - 100;
                 tcprecieve(a);
                 for(int d = a; d >= c ; d--)

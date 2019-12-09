@@ -28,7 +28,6 @@ The console feedback can be disabled by commenting out the Console.WriteLine(s) 
  *********************************************************/
 public class Command
 {
-
     //Starting the data stream 
     public void startstream()
     {
@@ -39,8 +38,9 @@ public class Command
         {
             StreamReader reader = new StreamReader(dataStream);
             Var.responseFromR2000 = reader.ReadToEnd();
-            Console.WriteLine("Response: \r\n" + Var.responseFromR2000);
+            //Console.WriteLine("Response: \r\n" + Var.responseFromR2000);
         }
+        errorcheck();
     }
 
     //Stopping data stream 
@@ -53,8 +53,9 @@ public class Command
         {
             StreamReader reader = new StreamReader(dataStream);
             Var.responseFromR2000 = reader.ReadToEnd();
-            Console.WriteLine("Response: \r\n" + Var.responseFromR2000);
+            //Console.WriteLine("Response: \r\n" + Var.responseFromR2000);
         }
+        errorcheck();
     }
 
     //Feeding the watchdog, this needs done ever 60 seconds to keep the connection from closing
@@ -73,7 +74,7 @@ public class Command
             Var.responseFromR2000 = reader.ReadToEnd();
             //Console.WriteLine("Response: \r\n"+Var.responseFromR2000);
             }
-
+        errorcheck();
         }   
         catch
         {
@@ -91,8 +92,9 @@ public class Command
         {
             StreamReader reader = new StreamReader(dataStream);
             Var.responseFromR2000 = reader.ReadToEnd();
-            Console.WriteLine("Response: \r\n" + Var.responseFromR2000);
+            //Console.WriteLine("Response: \r\n" + Var.responseFromR2000);
         }
+        errorcheck();
     }
 
     //All parameters from Config.txt are sent to the R2000
@@ -110,8 +112,9 @@ public class Command
             {
                 StreamReader reader = new StreamReader(dataStream);
                 Var.responseFromR2000 = reader.ReadToEnd();
-                Console.WriteLine("Response: \r\n"+Var.responseFromR2000);
-            }      
+                //Console.WriteLine("Response: \r\n"+Var.responseFromR2000);
+            }
+            errorcheck();  
         }
 
         // Parameter setup using the set_scanoutput_config function. 
@@ -126,8 +129,9 @@ public class Command
             {
                 StreamReader reader = new StreamReader(dataStream);
                 Var.responseFromR2000 = reader.ReadToEnd();
-                Console.WriteLine("Response: \r\n"+Var.responseFromR2000);
-            }      
+                //Console.WriteLine("Response: \r\n"+Var.responseFromR2000);
+            }
+            errorcheck();      
         }
     }
 
@@ -143,6 +147,7 @@ public class Command
             Var.responseFromR2000 = reader.ReadToEnd();
             Console.WriteLine("Response: \r\n" + Var.responseFromR2000);
         }
+        errorcheck();
     }
 
     //Factory reset of the device
@@ -155,13 +160,35 @@ public class Command
         {
             StreamReader reader = new StreamReader(dataStream);
             Var.responseFromR2000 = reader.ReadToEnd();
-            Console.WriteLine("Response: \r\n" + Var.responseFromR2000);
+            //Console.WriteLine("Response: \r\n" + Var.responseFromR2000);
         }
+        errorcheck();
     }
 
     public void errorcheck()
     {
-        Var.responseFromR2000 = "" ;
+        int num = Var.responseFromR2000.IndexOf("error_code");
+        string error = Var.responseFromR2000.Substring(num + 12, 1);
+        //Console.WriteLine("error code = " + error);
+
+        if (error == "0")
+        {
+            //Console.WriteLine("no error to report");
+        }
+        else
+        {
+            Console.WriteLine("Response: \r\n" + Var.responseFromR2000);
+            Console.WriteLine("Command not successful, exiting system");
+            Environment.Exit(0);
+        }
+
+            // int num = text.IndexOf(stringcharacteristics[a]);
+            // //Console.WriteLine("int num = " + num);
+            // string substring = text.Substring(num+stringlength[a], 40);
+            // //Console.WriteLine("substring = " + substring);
+            // stringvariables[a] = substring.Substring(0,(substring.IndexOf(';')));
+            // Console.WriteLine(stringcharacteristics[a] + " = " + stringvariables[a]);
+
     }
 
 

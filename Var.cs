@@ -21,12 +21,14 @@ public static class Var
     public static string ScanDataType;
     //Starting angle location; Valid values are -180 to +180
     public static int ScanStartAngle;
+    public static int ScanFieldAngle;
     public static int byteamount;
     public static int headersize;
     public static int packetamount;
     public static int[] packetsize;
     public static byte[] rawdata;
-    public static byte[] measurmentdata;
+    public static byte[] rawmeasurmentdata;
+    
     public static double maxnumpointsscan;
     public static int Port;
     public static string Handle;
@@ -42,5 +44,7 @@ public static class Var
     public static int x;
     public static int lastpacketnumber;
     public static string  responseFromR2000;
-
+    public static int numscanpoints;
+    public static decimal[] angulardata;
+    public static int[] measurmentdata;
 }

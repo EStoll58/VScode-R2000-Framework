@@ -175,7 +175,7 @@ public class Data
                 }
                 else
                 {
-                    Console.WriteLine("there was only 1 packet");
+                    //Console.WriteLine("there was only 1 packet");
                 }
                 Var.byteamount = byteamount;
                 //Console.WriteLine("Scan points = " + Var.numscanpoints);
@@ -183,24 +183,45 @@ public class Data
                 //Initializing angular increment array
                 Var.angulardata = new decimal[Var.numscanpoints];
 
-                decimal degrees = Math.Round(decimal.Divide(Convert.ToInt32(Var.ScanFieldAngle), Convert.ToInt32(Var.numscanpoints)),3);
+                decimal degrees = Math.Round(decimal.Divide(Convert.ToInt32(Var.ScanFieldAngle), Convert.ToInt32(Var.numscanpoints)),5);
                 //Console.WriteLine("degrees = " + degrees);
                 //Console.WriteLine("scanfieldangle = " + Var.ScanFieldAngle);
                 //Console.WriteLine("numscanpoints = " + Var.numscanpoints);
-                if (Var.ScanDirection == "ccw")
+                if (Var.FilterType == "none")
                 {
-                    for (int i = 0; i < Var.numscanpoints; i++)
+                    if (Var.ScanDirection == "ccw")
                     {
-                        Var.angulardata[i] = ((Var.ScanStartAngle/10000) + (i * degrees));
+                        for (int i = 0; i < Var.numscanpoints; i++)
+                        {
+                            Var.angulardata[i] = ((Var.ScanStartAngle/10000) + (i * degrees));
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < Var.numscanpoints; i++)
+                        {
+                            Var.angulardata[i] = ((Var.ScanStartAngle/10000) - (i * degrees));
+                        }
                     }
                 }
                 else
                 {
-                    for (int i = 0; i < Var.numscanpoints; i++)
+                    if (Var.ScanDirection == "ccw")
                     {
-                        Var.angulardata[i] = ((Var.ScanStartAngle/10000) - (i * degrees));
+                        for (int i = 0; i < Var.numscanpoints; i++)
+                        {
+                            Var.angulardata[i] = ((Var.ScanStartAngle/10000) + (i * degrees) + (degrees/2));
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < Var.numscanpoints; i++)
+                        {
+                            Var.angulardata[i] = ((Var.ScanStartAngle/10000) - (i * degrees) - (degrees/2));
+                        }
                     }
                 }
+                
                 Console.WriteLine("Angular Data =\r\n " + string.Join(" ",Var.angulardata));
                 
 

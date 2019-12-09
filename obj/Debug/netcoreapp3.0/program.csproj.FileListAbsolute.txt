@@ -1,0 +1,22 @@
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\bin\Debug\netcoreapp3.0\program.exe
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\bin\Debug\netcoreapp3.0\program.deps.json
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\bin\Debug\netcoreapp3.0\program.runtimeconfig.json
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\bin\Debug\netcoreapp3.0\program.runtimeconfig.dev.json
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\bin\Debug\netcoreapp3.0\program.dll
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\bin\Debug\netcoreapp3.0\program.pdb
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\obj\Debug\netcoreapp3.0\program.csprojAssemblyReference.cache
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\obj\Debug\netcoreapp3.0\program.AssemblyInfoInputs.cache
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\obj\Debug\netcoreapp3.0\program.AssemblyInfo.cs
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\obj\Debug\netcoreapp3.0\program.dll
+C:\Users\estoll\Documents\R2000\Csharp\Git R2000 Library\program\obj\Debug\netcoreapp3.0\program.pdb
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\bin\Debug\netcoreapp3.0\program.exe
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\bin\Debug\netcoreapp3.0\program.deps.json
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\bin\Debug\netcoreapp3.0\program.runtimeconfig.json
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\bin\Debug\netcoreapp3.0\program.runtimeconfig.dev.json
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\bin\Debug\netcoreapp3.0\program.dll
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\bin\Debug\netcoreapp3.0\program.pdb
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\obj\Debug\netcoreapp3.0\program.csprojAssemblyReference.cache
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\obj\Debug\netcoreapp3.0\program.AssemblyInfoInputs.cache
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\obj\Debug\netcoreapp3.0\program.AssemblyInfo.cs
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\obj\Debug\netcoreapp3.0\program.dll
+C:\Users\estoll\Documents\R2000\Csharp\R2000 Measurement\program\obj\Debug\netcoreapp3.0\program.pdb

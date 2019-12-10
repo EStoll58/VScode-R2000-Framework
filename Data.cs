@@ -344,7 +344,7 @@ public class Data
     public void background()
     {
         //Takes the average of 3 scans for the background 
-        bulkdatatcp();
+        bulkdatatcp(); //Initializing some values and parameters that are needed for this class
 
         int[] background1 = new int[Var.measurmentdata.Length];
         int[] background2 = new int[Var.measurmentdata.Length];
@@ -352,14 +352,44 @@ public class Data
         Var.background = new int[Var.measurmentdata.Length];
 
         bulkdatatcp();
-        Array.Copy(Var.measurmentdata,background1,Var.measurmentdata.Length);
-        bulkdatatcp();
-        Array.Copy(Var.measurmentdata,background2,Var.measurmentdata.Length);
-        bulkdatatcp();
-        Array.Copy(Var.measurmentdata,background3,Var.measurmentdata.Length);
+        for (int i = 0; i < Var.measurmentdata.Length; i++)
+        {
+            if (Var.measurmentdata[i] == -1 || Var.measurmentdata[i] > Var.maxrange) 
+            {
+                background1[i] = Var.maxrange;
+            }
+            else
+            {
+                background1[i] = Var.measurmentdata[i];
+            }
+        }
 
-        Console.WriteLine("calculating");
-        // NEED TO ADD, IF -1 OR NULL IGNORE, ERROR IN SCAN VALUE
+        bulkdatatcp();
+        for (int i = 0; i < Var.measurmentdata.Length; i++)
+        {
+            if (Var.measurmentdata[i] == -1 || Var.measurmentdata[i] > Var.maxrange) 
+            {
+                background2[i] = Var.maxrange;
+            }
+            else
+            {
+                background2[i] = Var.measurmentdata[i];
+            }
+        }
+
+        bulkdatatcp();
+        for (int i = 0; i < Var.measurmentdata.Length; i++)
+        {
+            if (Var.measurmentdata[i] == -1 || Var.measurmentdata[i] > Var.maxrange) 
+            {
+                background3[i] = Var.maxrange;
+            }
+            else
+            {
+                background3[i] = Var.measurmentdata[i];
+            }
+        }
+
         for (int i = 0; i < Var.measurmentdata.Length; i++)
         {
             Var.background[i] = ((background1[i] + background2[i] + background3[i]) / 3);

@@ -10,7 +10,7 @@ public class Configuration
     public void config()
     {
         string text =  System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Config.txt");
-        string[] stringcharacteristics = {"IPaddress","SamplesPerScan","ScanDirection","ScanFrequency","FilterType","FilterWidth","ScanDataType","ScanStartAngle","ScanFieldAngle","HMIDisplayType","HMIDisplayText1","HMIDisplayText2"};
+        string[] stringcharacteristics = {"IPaddress","SamplesPerScan","ScanDirection","ScanFrequency","FilterType","FilterWidth","ScanDataType","ScanStartAngle","ScanFieldAngle","MaxRange","HMIDisplayType","HMIDisplayText1","HMIDisplayText2"};
 
         string[] stringvariables = new string[stringcharacteristics.GetLength(0)];
         
@@ -59,6 +59,7 @@ public class Configuration
         Var.ScanDataType = stringvariables[6];
         Var.ScanStartAngle = (Convert.ToInt32(stringvariables[7]) * 10000);
         Var.ScanFieldAngle = Convert.ToInt32(stringvariables[8]);
+        Var.maxrange = Convert.ToInt32(stringvariables[9]);
         if(Var.FilterType == "none")
         {
             Var.maxnumpointsscan = Math.Round((Var.SamplesPerScan/360) * Convert.ToInt32(stringvariables[8]));
@@ -68,9 +69,9 @@ public class Configuration
             Var.maxnumpointsscan = Math.Round((Var.SamplesPerScan/360) * Convert.ToInt32(stringvariables[8])/Var.FilterWidth);
         }
         
-        Var.HMIDisplayType = stringvariables[9];
-        Var.HMIDisplayText1 = stringvariables[10];
-        Var.HMIDisplayText2 = stringvariables[11];
+        Var.HMIDisplayType = stringvariables[10];
+        Var.HMIDisplayText1 = stringvariables[11];
+        Var.HMIDisplayText2 = stringvariables[12];
 
 
 

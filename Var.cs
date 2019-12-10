@@ -48,4 +48,10 @@ public static class Var
     public static decimal[] angulardata;
     public static int[] measurmentdata;
     public static int[] background;
+    public static int maxrange;
+
+
+
+
+
 }

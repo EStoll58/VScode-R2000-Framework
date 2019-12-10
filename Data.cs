@@ -183,7 +183,7 @@ public class Data
                 //Initializing angular increment array
                 Var.angulardata = new decimal[Var.numscanpoints];
 
-                decimal degrees = Math.Round(decimal.Divide(Convert.ToInt32(Var.ScanFieldAngle), Convert.ToInt32(Var.numscanpoints)),5);
+                decimal degrees = Math.Round(decimal.Divide(Convert.ToInt32(Var.ScanFieldAngle), Convert.ToInt32(Var.numscanpoints)),6);
                 //Console.WriteLine("degrees = " + degrees);
                 //Console.WriteLine("scanfieldangle = " + Var.ScanFieldAngle);
                 //Console.WriteLine("numscanpoints = " + Var.numscanpoints);
@@ -397,23 +397,6 @@ public class Data
 
         Console.WriteLine("Background = \r\n" + string.Join(" ", Var.background));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void packetcheck()
     {
